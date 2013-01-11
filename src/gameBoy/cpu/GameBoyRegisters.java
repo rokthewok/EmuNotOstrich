@@ -1,3 +1,4 @@
+package gameBoy.cpu;
 
 public class GameBoyRegisters {
 	//Array to hold registers

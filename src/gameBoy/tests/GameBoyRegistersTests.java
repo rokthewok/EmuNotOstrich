@@ -1,9 +1,10 @@
-import static org.junit.Assert.*;
+package gameBoy.tests;
+
+import gameBoy.cpu.GameBoyRegisters;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 
 public class GameBoyRegistersTests {
 
