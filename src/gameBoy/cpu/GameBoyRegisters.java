@@ -3,11 +3,17 @@ package gameBoy.cpu;
 import gameBoy.interfaces.IRegister;
 
 public class GameBoyRegisters implements IRegister {
-	//Array to hold registers
 	private byte registers[];
-	//Enum used to refer to registers
 	public enum Register {
 		A, B, C, D, E, F, H, L, AF, BC, DE, HL, SP, PC
+	}
+	public enum Flag {
+		Z, 	// Set when the result of a math operation is zero or two values 
+			// match when using the CP instruction
+		N, 	// Set when the last math operation performed was subtraction
+		H, 	// Set when a carry occurred in the lower nibble of the last operation
+		C	// Set if a carry occurred in the last operation or
+			// if register A is the smaller value when executing the CP instruction
 	}
 	
 	public GameBoyRegisters() {
@@ -45,8 +51,11 @@ public class GameBoyRegisters implements IRegister {
 	
 	private void set16BitRegisterFromTwo8Bit(Register x, Register y, short data) {
 		byte xData, yData;
+		System.out.println(data);
 		xData = (byte) ((data & 0xFF00) >> 8);
+		System.out.println(xData);
 		yData = (byte) (data & 0x00FF);
+		System.out.println(yData);
 		registers[this.getRegisterIndex(x)] = xData;
 		registers[this.getRegisterIndex(y)] = yData;
 	}
@@ -60,11 +69,6 @@ public class GameBoyRegisters implements IRegister {
 		registers[index + 1] = second;
 	}
 	
-	/**
-	 * Returns the data in the specified register
-	 * @param reg desired register
-	 * @return data in register
-	 */
 	public short getRegister(Register reg) {
 		short register = 0;
 
@@ -96,11 +100,49 @@ public class GameBoyRegisters implements IRegister {
 		return register;
 	}
 	
-	/**
-	 * Gets the index of the register in registers
-	 * @param reg Game boy register
-	 * @return index of register in registers
-	 */
+	public void setFlagTo(Flag flag, boolean state) {
+		int value = state ? 1 : 0;
+		short F = this.getRegister(Register.F);
+		byte shift = 0;
+		switch (flag) {
+			case Z: // bit 7
+				shift = 7;
+				break;
+			case N: // bit 6
+				shift = 6;
+				break;
+			case H: // bit 5
+				shift = 5;
+				break;
+			case C: // bit 4
+				shift = 4;
+				break;
+		}
+		F |= value << shift;
+		this.set8BitRegister(Register.F, F);
+	}
+	
+	public byte getFlag(Flag flag) {
+		byte data = 0;
+		short F = this.getRegister(Register.F);
+		switch (flag) {
+			case Z: // bit 7
+				data = (byte) ((F & 0x80) >> 7);
+				break;
+			case N: // bit 6
+				data = (byte) ((F & 0x40) >> 6);
+				break;
+			case H: // bit 5
+				data = (byte) ((F & 0x20) >> 5);
+				break;
+			
+			case C: // bit 4
+				data = (byte) ((F & 0x10) >> 4);
+				break;
+		}
+		return data;
+	}
+	
 	private int getRegisterIndex(Register reg) {
 		int index = 0;
 		
@@ -143,13 +185,6 @@ public class GameBoyRegisters implements IRegister {
 		return index;
 	}
 	
-	/**
-	 * Combines register 1 and 2 by shifting register 1 to the left 
-	 * and or'ing register 2
-	 * @param x register 1
-	 * @param y register 2
-	 * @return register 1 and register 2 combined
-	 */
 	private short combine8BitRegisters(Register x, Register y) {
 		
 		short X = this.registers[this.getRegisterIndex(x)];
