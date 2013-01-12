@@ -10,6 +10,7 @@ import gameBoy.interfaces.IProcessor;
  *
  */
 public class IncB implements IOpcode {
+	private static int cycles = 8;
 	private IProcessor processor;
 	
 	public IncB( IProcessor processor ) {
@@ -20,6 +21,11 @@ public class IncB implements IOpcode {
 	public void execute() {
 		this.processor.getRegisters().setRegister( Register.B,
 				(short) ( this.processor.getRegisters().getRegister( Register.B ) + 1 ) );
+	}
+
+	@Override
+	public int getCycles() {
+		return cycles;
 	}
 
 }
