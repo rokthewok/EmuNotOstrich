@@ -9,7 +9,7 @@ import gameBoy.interfaces.IProcessor;
 
 import org.junit.Test;
 
-public class IncBcTests {
+public class IncrementTests {
 
 	@Test
 	public void testIncBcExecution() {
