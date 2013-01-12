@@ -1,4 +1,4 @@
-package gameBoy.cpu.opcodes;
+package gameBoy.cpu.opcodes.increment;
 
 import gameBoy.cpu.GameBoyRegisters.Register;
 import gameBoy.interfaces.IOpcode;
