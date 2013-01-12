@@ -10,6 +10,7 @@ public class Memory implements IMemory {
 		this.memory = new byte[MEMORY_SIZE];
 	}
 	
+	@Override
 	public short get16BitValue( int address ) {
 		if( address >= 0 || address < MEMORY_SIZE -1 ) {
 			return (short) ( ( this.memory[address] << 8 ) | this.memory[address + 1] );
@@ -18,6 +19,7 @@ public class Memory implements IMemory {
 		}
 	}
 	
+	@Override
 	public byte get8BitValue( int address ) {
 		if( address >= 0 || address < MEMORY_SIZE ) {
 			return this.memory[address];
