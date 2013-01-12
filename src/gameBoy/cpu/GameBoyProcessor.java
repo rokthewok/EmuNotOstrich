@@ -11,9 +11,17 @@ import gameBoy.interfaces.IRegister;
  */
 public class GameBoyProcessor implements IProcessor {
 	private IRegister registers;
+	
+	public GameBoyProcessor() {
+		this( new GameBoyRegisters() );
+	}
+	
+	public GameBoyProcessor( IRegister registers ) {
+		this.registers = registers;
+	}
+	
 	@Override
 	public IRegister getRegisters() {
-		// TODO Auto-generated method stub
 		return this.registers;
 	}
 
