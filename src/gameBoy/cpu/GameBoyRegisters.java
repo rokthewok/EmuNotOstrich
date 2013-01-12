@@ -20,13 +20,13 @@ public class GameBoyRegisters implements IRegister {
 			this.set16BitRegisterFromTwo8Bit(Register.A, Register.F, data);
 			break;
 		case BC:
-			this.set16BitRegisterFromTwo8Bit(Register.A, Register.F, data);
+			this.set16BitRegisterFromTwo8Bit(Register.B, Register.C, data);
 			break;
 		case DE:
-			this.set16BitRegisterFromTwo8Bit(Register.A, Register.F, data);
+			this.set16BitRegisterFromTwo8Bit(Register.D, Register.E, data);
 			break;
 		case HL:
-			this.set16BitRegisterFromTwo8Bit(Register.A, Register.F, data);
+			this.set16BitRegisterFromTwo8Bit(Register.H, Register.L, data);
 			break;
 		case PC:
 			this.set16BitRegister(reg, data);
@@ -45,16 +45,16 @@ public class GameBoyRegisters implements IRegister {
 	
 	private void set16BitRegisterFromTwo8Bit(Register x, Register y, short data) {
 		byte xData, yData;
-		xData = (byte) ((data & 240) >> 16); // 1111 0000 = 240
-		yData = (byte) (data & 15); // 0000 1111 = 15
+		xData = (byte) ((data & 0xFF00) >> 8);
+		yData = (byte) (data & 0x00FF);
 		registers[this.getRegisterIndex(x)] = xData;
 		registers[this.getRegisterIndex(y)] = yData;
 	}
 	
 	private void set16BitRegister(Register reg, short data) {
 		byte first, second;
-		first = (byte) ((data & 240) >> 16); // 1111 0000 = 240
-		second = (byte) (data & 15); // 0000 1111 = 15
+		first = (byte) ((data & 0xFF00) >> 8);
+		second = (byte) (data & 0x00FF);
 		int index = this.getRegisterIndex(reg);
 		registers[index] = first;
 		registers[index + 1] = second;
@@ -70,17 +70,23 @@ public class GameBoyRegisters implements IRegister {
 
 		switch (reg) {
 		case AF:
-			register = this.combine8BitRegisters(Register.A, Register.B);
+			register = this.combine8BitRegisters(Register.A, Register.F);
 			break;
 		case BC:
-			register = this.combine8BitRegisters(Register.A, Register.B);
+			register = this.combine8BitRegisters(Register.B, Register.C);
 			break;
 		case DE:
 			register = this.combine8BitRegisters(Register.D, Register.E);
-
 			break;
 		case HL:
 			register = this.combine8BitRegisters(Register.H, Register.L);
+			break;
+		case PC:
+		case SP:
+			// since PC and SP are 16 bit registers, we need to concatenate 
+			// the data at index and index + 1
+			register = (short) ( this.registers[this.getRegisterIndex( reg )] << 8 |
+							this.registers[this.getRegisterIndex( reg ) + 1] );
 			break;
 		default:
 			register = registers[this.getRegisterIndex(reg)];
