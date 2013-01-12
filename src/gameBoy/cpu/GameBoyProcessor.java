@@ -1,5 +1,6 @@
 package gameBoy.cpu;
 
+import gameBoy.cpu.GameBoyRegisters.Register;
 import gameBoy.interfaces.IMemory;
 import gameBoy.interfaces.IProcessor;
 import gameBoy.interfaces.IRegister;
@@ -32,6 +33,9 @@ public class GameBoyProcessor implements IProcessor {
 	@Override
 	public void initialize() {
 		this.initializeOpcodes();
+		
+		this.registers.setRegister( Register.SP, (short) 0xFFFE );
+		this.registers.setRegister( Register.PC, (short) 0x100 );
 	}
 	
 	private void initializeOpcodes() {
@@ -40,19 +44,16 @@ public class GameBoyProcessor implements IProcessor {
 
 	@Override
 	public IMemory getMemory() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.memory;
 	}
 
 	@Override
 	public IMemory getVideoMemory() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.videoMemory;
 	}
 
 	@Override
 	public void executeCycle() {
-		// TODO Auto-generated method stub
-		
+		// TODO execute one machine code
 	}
 }
