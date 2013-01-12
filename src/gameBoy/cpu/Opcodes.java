@@ -72,7 +72,25 @@ public class Opcodes {
 	public static int LD_C_L = 0x4D;
 	public static int LD_C_ADDR_HL = 0x4E;
 	public static int LD_C_A = 0x4F;
-	
+	public static int LD_D_B = 0x50;
+	public static int LD_D_C = 0x51;
+	public static int LD_D_D = 0x51;
+	public static int LD_D_E = 0x53;
+	public static int LD_D_H = 0x54;
+	public static int LD_D_L = 0x55;
+	public static int LD_D_ADDR_HL = 0x56;
+	public static int LD_D_A = 0x57;
+	public static int LD_E_B = 0x58;
+	public static int LD_E_C = 0x59;
+	public static int LD_E_D = 0x5A;
+	public static int LD_E_E = 0x5B;
+	public static int LD_E_H = 0x5C;
+	public static int LD_E_L = 0x5D;
+	public static int LD_E_ADDR_HL = 0x5E;
+	public static int LD_E_A = 0x5F;
+	public static int LD_H_B = 0x60;
+	public static int LD_H_C = 0x61;
+	public static int LD_H_D = 0x62;
 	
 	/*
 	 * Add opcodes (ADD)
