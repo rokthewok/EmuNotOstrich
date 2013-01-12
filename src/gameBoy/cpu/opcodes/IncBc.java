@@ -6,7 +6,7 @@ import gameBoy.interfaces.IProcessor;
 
 /**
  * Command implementation of the opcode INC BC.
- * @author john
+ * @author John Ruffer
  *
  */
 public class IncBc implements IOpcode {
