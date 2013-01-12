@@ -1,5 +1,5 @@
 package gameBoy.interfaces;
 
-public interface IVideoMemory {
+public interface IVideoMemory extends IMemory {
 
 }
