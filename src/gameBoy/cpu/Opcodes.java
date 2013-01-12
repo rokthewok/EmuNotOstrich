@@ -12,4 +12,6 @@ public class Opcodes {
 	public static int LD_ADDR_NN_SP = 0x08;
 	public static int ADD_HL_BC = 0x09;
 	public static int LD_A_ADDR_BC = 0x0A;
+	public static int DEC_BC = 0x0B;
+	
 }
