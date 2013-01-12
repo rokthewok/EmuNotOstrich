@@ -3,6 +3,7 @@ package gameBoy.cpu;
 import gameBoy.interfaces.IMemory;
 import gameBoy.interfaces.IProcessor;
 import gameBoy.interfaces.IRegister;
+import gameBoy.interfaces.IVideoMemory;
 
 /**
  * Aggregates the memory and registers of the Gameboy and handles
@@ -13,7 +14,7 @@ import gameBoy.interfaces.IRegister;
 public class GameBoyProcessor implements IProcessor {
 	private IRegister registers;
 	private IMemory memory;
-	private IMemory videoMemory;
+	private IVideoMemory videoMemory;
 	
 	public GameBoyProcessor() {
 		this( new GameBoyRegisters() );
