@@ -54,6 +54,7 @@ public class GameBoyProcessor implements IProcessor {
 	@Override
 	public void executeCycle() {
 		// TODO execute one machine code
+		this.switchHighNibble( (byte) 0 );
 	}
 	
 	private void switchHighNibble( byte opcode ) {
