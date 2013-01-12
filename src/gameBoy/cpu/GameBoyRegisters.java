@@ -1,6 +1,8 @@
 package gameBoy.cpu;
 
-public class GameBoyRegisters {
+import gameBoy.interfaces.IRegister;
+
+public class GameBoyRegisters implements IRegister {
 	//Array to hold registers
 	private byte registers[];
 	//Enum used to refer to registers
