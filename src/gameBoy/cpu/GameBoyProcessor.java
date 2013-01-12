@@ -1,6 +1,5 @@
 package gameBoy.cpu;
 
-import gameBoy.cpu.GameBoyRegisters.Register;
 import gameBoy.interfaces.IMemory;
 import gameBoy.interfaces.IProcessor;
 import gameBoy.interfaces.IRegister;
@@ -55,5 +54,13 @@ public class GameBoyProcessor implements IProcessor {
 	@Override
 	public void executeCycle() {
 		// TODO execute one machine code
+	}
+	
+	private void switchHighNibble( byte opcode ) {
+		byte highNibble = (byte) ( opcode >> 4 );
+		byte lowNibble = (byte) ( opcode & 0x0F );
+		switch( highNibble ) {
+		
+		}
 	}
 }

@@ -1,6 +1,6 @@
 package gameBoy.cpu.opcodes.increment;
 
-import gameBoy.cpu.GameBoyRegisters.Register;
+import gameBoy.cpu.Register;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 

@@ -2,7 +2,7 @@ package gameBoy.tests.opcodeTests;
 
 import static org.junit.Assert.*;
 import gameBoy.cpu.GameBoyProcessor;
-import gameBoy.cpu.GameBoyRegisters.Register;
+import gameBoy.cpu.Register;
 import gameBoy.cpu.opcodes.increment.*;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;

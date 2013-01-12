@@ -1,7 +1,8 @@
 package gameBoy.tests;
 
 import gameBoy.cpu.GameBoyRegisters;
-import gameBoy.cpu.GameBoyRegisters.Flag;
+import gameBoy.cpu.Flag;
+import gameBoy.cpu.Register;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,16 +18,16 @@ public class GameBoyRegistersTests {
 
 	@Test
 	public void testRegisters() {
-		registers.setRegister(GameBoyRegisters.Register.A, (short)12);
-		Assert.assertEquals(12, registers.getRegister(GameBoyRegisters.Register.A));
+		registers.setRegister(Register.A, (short)12);
+		Assert.assertEquals(12, registers.getRegister(Register.A));
 		
-		registers.setRegister(GameBoyRegisters.Register.DE, (short)257);
-		Assert.assertEquals(1, registers.getRegister(GameBoyRegisters.Register.D));
-		Assert.assertEquals(1, registers.getRegister(GameBoyRegisters.Register.E));
-		Assert.assertEquals(257, registers.getRegister(GameBoyRegisters.Register.DE));
+		registers.setRegister(Register.DE, (short)257);
+		Assert.assertEquals(1, registers.getRegister(Register.D));
+		Assert.assertEquals(1, registers.getRegister(Register.E));
+		Assert.assertEquals(257, registers.getRegister(Register.DE));
 		
-		registers.setRegister(GameBoyRegisters.Register.PC, (short)12);
-		Assert.assertEquals(12, registers.getRegister(GameBoyRegisters.Register.PC));
+		registers.setRegister(Register.PC, (short)12);
+		Assert.assertEquals(12, registers.getRegister(Register.PC));
 	}
 	
 	public void testFlags() {

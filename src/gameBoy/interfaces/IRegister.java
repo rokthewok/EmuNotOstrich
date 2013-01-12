@@ -1,7 +1,7 @@
 package gameBoy.interfaces;
 
-import gameBoy.cpu.GameBoyRegisters.Register;
-import gameBoy.cpu.GameBoyRegisters.Flag;
+import gameBoy.cpu.Register;
+import gameBoy.cpu.Flag;
 
 public interface IRegister {
 	public void setRegister( Register register, short data );
