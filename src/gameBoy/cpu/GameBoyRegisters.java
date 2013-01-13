@@ -129,6 +129,10 @@ public class GameBoyRegisters implements IRegister {
 		return data;
 	}
 	
+	public void clearFlags() {
+		this.set8BitRegister( Register.F, (byte) 0 );
+	}
+	
 	private int getRegisterIndex(Register reg) {
 		int index = 0;
 		
