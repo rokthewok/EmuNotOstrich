@@ -25,21 +25,32 @@ public abstract class Addition8 implements IOpcode {
 		int n = this.processor.getRegisters().getRegister( this.register );
 		int A = this.processor.getRegisters().getRegister( Register.A );
 		
+		byte result = doFlagCheck( n, A );
+		
+		this.processor.getRegisters().setRegister( Register.A, result );
+	}
+
+	@Override
+	public int getCycles() {
+		return cycles;
+	}
+
+	protected byte doFlagCheck( int x, int y ) {
 		// Clear the subtract flag
 		this.processor.getRegisters().setFlagTo( Flag.N, false );
 		
 		// Check for overflow to set or clear Carry flag
-		if( ( n > 0 ) && ( A > 0 ) &&
-				( n + A > Byte.MAX_VALUE ) ) {
+		if( ( x > 0 ) && ( y > 0 ) &&
+				( x + y > Byte.MAX_VALUE ) ) {
 			this.processor.getRegisters().setFlagTo( Flag.C, true );
-		} else if( ( n < 0 ) && ( A < 0 ) &&
-				( n + A < Byte.MIN_VALUE ) ) {
+		} else if( ( x < 0 ) && ( y < 0 ) &&
+				( x + y < Byte.MIN_VALUE ) ) {
 			this.processor.getRegisters().setFlagTo( Flag.C, true );
 		} else {
 			this.processor.getRegisters().setFlagTo( Flag.C, false );
 		}
 		
-		byte result = (byte) ( (byte) n + (byte) A );
+		byte result = (byte) ( (byte) x + (byte) y );
 		
 		// if result is zero, set the zero flag
 		if( result == 0 ) {
@@ -55,12 +66,6 @@ public abstract class Addition8 implements IOpcode {
 			this.processor.getRegisters().setFlagTo( Flag.H, false );
 		}
 		
-		this.processor.getRegisters().setRegister( Register.A, result );
+		return result;
 	}
-
-	@Override
-	public int getCycles() {
-		return cycles;
-	}
-
 }
