@@ -40,11 +40,8 @@ public class GameBoyRegisters implements IRegister {
 	
 	private void set16BitRegisterFromTwo8Bit(Register x, Register y, short data) {
 		byte xData, yData;
-		System.out.println(data);
 		xData = (byte) ((data & 0xFF00) >> 8);
-		System.out.println(xData);
 		yData = (byte) (data & 0x00FF);
-		System.out.println(yData);
 		registers[this.getRegisterIndex(x)] = xData;
 		registers[this.getRegisterIndex(y)] = yData;
 	}
