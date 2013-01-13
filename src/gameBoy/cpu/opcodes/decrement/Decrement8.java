@@ -6,6 +6,7 @@ import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
 public abstract class Decrement8 implements IOpcode {
+	private static int cycles = 4;
 	private Register register;
 	private IProcessor processor;
 	
@@ -34,6 +35,6 @@ public abstract class Decrement8 implements IOpcode {
 	}
 	
 	public int getCycles() {
-		return 4;
+		return cycles;
 	}
 }

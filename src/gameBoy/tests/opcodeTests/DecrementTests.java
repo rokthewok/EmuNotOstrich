@@ -46,6 +46,12 @@ public class DecrementTests {
 	}
 	
 	@Test
+	public void testDecAddrHL() {
+		// Needs to be implemented when memory works
+		Assert.assertEquals(true, false);
+	}
+	
+	@Test
 	public void testZFlag() {
 		byte value = 1;
 		this.processor.getRegisters().setRegister(Register.A, value);
