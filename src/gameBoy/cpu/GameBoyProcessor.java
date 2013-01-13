@@ -4,6 +4,7 @@ import gameBoy.interfaces.IMemory;
 import gameBoy.interfaces.IProcessor;
 import gameBoy.interfaces.IRegister;
 import gameBoy.interfaces.IVideoMemory;
+import gameBoy.memory.Memory;
 
 /**
  * Aggregates the memory and registers of the Gameboy and handles
@@ -17,11 +18,12 @@ public class GameBoyProcessor implements IProcessor {
 	private IVideoMemory videoMemory;
 	
 	public GameBoyProcessor() {
-		this( new GameBoyRegisters() );
+		this( new GameBoyRegisters(), new Memory() );
 	}
 	
-	public GameBoyProcessor( IRegister registers ) {
+	public GameBoyProcessor( IRegister registers, IMemory memory ) {
 		this.registers = registers;
+		this.memory = memory;
 	}
 	
 	@Override
