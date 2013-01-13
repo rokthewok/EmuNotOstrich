@@ -34,6 +34,64 @@ public class IncrementTests {
 
 	@Test
 	public void testIncBExecution() {
-		fail( "Not yet implemented" );
+		byte value = 14;
+		IProcessor processor = new GameBoyProcessor();
+		processor.getRegisters().setRegister( Register.B, value );
+		IOpcode incB = new IncB( processor );
+		
+		incB.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.B ) );
+		
+		value = (byte) 255;
+		processor.getRegisters().setRegister( Register.B, value );
+		
+		incB.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.B ) );
+	}
+	
+	@Test
+	public void testIncCExecution() {
+		byte value = 14;
+		IProcessor processor = new GameBoyProcessor();
+		processor.getRegisters().setRegister( Register.C, value );
+		IOpcode incC = new IncC( processor );
+		
+		incC.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.C ) );
+		
+		value = (byte) 255;
+		processor.getRegisters().setRegister( Register.C, value );
+		
+		incC.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.C ) );
+	}
+	
+	@Test
+	public void testIncDeExecution() {
+		short value = 14;
+		IProcessor processor = new GameBoyProcessor();
+		processor.getRegisters().setRegister( Register.DE, value );
+		IOpcode incDe = new IncDe( processor );
+		
+		incDe.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.DE ) );
+		
+		value = 32514;
+		processor.getRegisters().setRegister( Register.DE, value );
+		
+		incDe.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.DE ) );
 	}
 }
