@@ -71,6 +71,8 @@ public class AdditionTests {
 		IProcessor processor = new GameBoyProcessor();
 		IOpcode add = new AddAA( processor );
 		
+		assertEquals( 4, add.getCycles() );
+		
 		add.execute();
 		
 		assertEquals( 0, processor.getRegisters().getRegister( Register.A ) );
@@ -119,6 +121,8 @@ public class AdditionTests {
 		
 		processor.getRegisters().setRegister( Register.HL, address );
 		
+		assertEquals(  8, add.getCycles() );
+		
 		add.execute();
 		
 		assertEquals( 0, processor.getRegisters().getRegister( Register.A ) );
@@ -163,6 +167,8 @@ public class AdditionTests {
 	}
 	
 	private void do8BitTest( Register register, IOpcode add, IProcessor processor ) {
+		assertEquals( 4, add.getCycles() );
+		
 		add.execute();
 		
 		assertEquals( 0, processor.getRegisters().getRegister( Register.A ) );
