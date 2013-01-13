@@ -47,8 +47,17 @@ public class DecrementTests {
 	
 	@Test
 	public void testDecAddrHL() {
-		// Needs to be implemented when memory works
-		Assert.assertEquals(true, false);
+		short address = (short) 0xC000;
+		byte data = 20;
+		System.out.println(this.processor.getMemory());
+		this.processor.getMemory().set8BitValue(address, data);
+		this.processor.getRegisters().setRegister( Register.HL , address);
+		this.op = new DecAddrHL( this.processor );
+		
+		op.execute();
+		data--;
+		
+		Assert.assertEquals(data, this.processor.getMemory().get8BitValue(address));
 	}
 	
 	@Test

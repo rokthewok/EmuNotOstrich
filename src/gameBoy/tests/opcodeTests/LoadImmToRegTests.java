@@ -23,7 +23,7 @@ public class LoadImmToRegTests {
 	@Test
 	public void testLoadImmToReg8() {
 		byte value = 30;
-		IOpcode op = new LoadImmToB( processor , value );
+		this.op = new LoadImmToB( processor , value );
 		
 		op.execute();
 		
@@ -33,7 +33,7 @@ public class LoadImmToRegTests {
 	@Test
 	public void testLoadImmToReg16() {
 		short value = 300;
-		IOpcode op = new LoadImmToBC( processor , value );
+		this.op = new LoadImmToBC( processor , value );
 		
 		op.execute();
 		
