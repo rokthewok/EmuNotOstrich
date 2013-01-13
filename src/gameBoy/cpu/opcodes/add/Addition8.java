@@ -1,0 +1,66 @@
+package gameBoy.cpu.opcodes.add;
+
+import gameBoy.cpu.Flag;
+import gameBoy.cpu.Register;
+import gameBoy.interfaces.IOpcode;
+import gameBoy.interfaces.IProcessor;
+
+/**
+ * Abstract class which encapsulates adding the specified register to register A.
+ * @author John Ruffer
+ *
+ */
+public abstract class Addition8 implements IOpcode {
+	private static int cycles = 4;
+	private IProcessor processor;
+	private Register register;
+	
+	protected Addition8( IProcessor processor, Register register ) {
+		this.processor = processor;
+		this.register = register;
+	}
+	
+	@Override
+	public void execute() {
+		int n = this.processor.getRegisters().getRegister( this.register );
+		int A = this.processor.getRegisters().getRegister( Register.A );
+		
+		// Clear the subtract flag
+		this.processor.getRegisters().setFlagTo( Flag.N, false );
+		
+		// Check for overflow to set or clear Carry flag
+		if( ( n > 0 ) && ( A > 0 ) &&
+				( n + A > Byte.MAX_VALUE ) ) {
+			this.processor.getRegisters().setFlagTo( Flag.C, true );
+		} else if( ( n < 0 ) && ( A < 0 ) &&
+				( n + A < Byte.MIN_VALUE ) ) {
+			this.processor.getRegisters().setFlagTo( Flag.C, true );
+		} else {
+			this.processor.getRegisters().setFlagTo( Flag.C, false );
+		}
+		
+		byte result = (byte) ( (byte) n + (byte) A );
+		
+		// if result is zero, set the zero flag
+		if( result == 0 ) {
+			this.processor.getRegisters().setFlagTo( Flag.Z, true );
+		} else {
+			this.processor.getRegisters().setFlagTo( Flag.Z, false );
+		}
+		
+		// check upper nibble for data to set or clear half carry flag
+		if( ( result & 0xF0 ) != 0 ) {
+			this.processor.getRegisters().setFlagTo( Flag.H, true );
+		} else {
+			this.processor.getRegisters().setFlagTo( Flag.H, false );
+		}
+		
+		this.processor.getRegisters().setRegister( Register.A, result );
+	}
+
+	@Override
+	public int getCycles() {
+		return cycles;
+	}
+
+}
