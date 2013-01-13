@@ -109,4 +109,17 @@ public class Opcodes {
 	public static int ADD_A_A = 0x87;
 	public static int ADD_A_N = 0xC6;
 	public static int ADD_SP_d = 0xE8;
+	
+	/*
+	 * Subtract opcodes (SUB)
+	 */
+	public static int SUB_A_B = 0x90;
+	public static int SUB_A_C = 0x91;
+	public static int SUB_A_D = 0x92;
+	public static int SUB_A_E = 0x93;
+	public static int SUB_A_H = 0x94;
+	public static int SUB_A_L = 0x95;
+	public static int SUB_A_ADDR_HL = 0x96;
+	public static int SUB_A_A = 0x97;
+	public static int SUB_A_N = 0xD6;
 }

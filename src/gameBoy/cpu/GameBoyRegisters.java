@@ -87,7 +87,6 @@ public class GameBoyRegisters implements IRegister {
 	}
 	
 	public void setFlagTo(Flag flag, boolean state) {
-		int value = state ? 1 : 0;
 		short F = this.getRegister(Register.F);
 		byte shift = 0;
 		switch (flag) {
@@ -104,13 +103,19 @@ public class GameBoyRegisters implements IRegister {
 				shift = 4;
 				break;
 		}
-		F |= value << shift;
+		
+		if( state ) {
+			F |= 1 << shift;
+		} else {
+			F &= ~( 1 << shift );
+		}
+		
 		this.set8BitRegister(Register.F, F);
 	}
 	
 	public byte getFlag(Flag flag) {
 		byte data = 0;
-		short F = this.getRegister(Register.F);
+		byte F = (byte) this.getRegister(Register.F);
 		switch (flag) {
 			case Z: // bit 7
 				data = (byte) ((F & 0x80) >> 7);
