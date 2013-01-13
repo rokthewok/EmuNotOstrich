@@ -5,19 +5,18 @@ import gameBoy.cpu.Register;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public abstract class Increment8 implements IOpcode {
-	private static int cycles = 4;
-	private final Register register;
+public class IncAddrHl implements IOpcode {
+	private static int cycles = 12;
 	private IProcessor processor;
 	
-	protected Increment8( IProcessor processor, Register register ) {
+	public IncAddrHl( IProcessor processor ) {
 		this.processor = processor;
-		this.register = register;
 	}
 	
 	@Override
 	public void execute() {
-		byte result = (byte) ( this.processor.getRegisters().getRegister( this.register ) + 1 );
+		short address = this.processor.getRegisters().getRegister( Register.HL );
+		byte result = (byte) ( this.processor.getMemory().get8BitValue( address ) + 1 );
 		
 //		this.processor.getRegisters().clearFlags();
 		
@@ -32,7 +31,7 @@ public abstract class Increment8 implements IOpcode {
 			this.processor.getRegisters().setFlagTo( Flag.H, true );
 		}
 		
-		this.processor.getRegisters().setRegister( this.register, result );
+		this.processor.getMemory().set8BitValue( address, result );
 	}
 
 	@Override

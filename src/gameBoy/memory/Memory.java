@@ -27,4 +27,16 @@ public class Memory implements IMemory {
 			return 0;
 		}
 	}
+
+	@Override
+	public void set8BitValue( int address, byte data ) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void set16BitValue( int address, short data ) {
+		// TODO Auto-generated method stub
+		
+	}
 }
