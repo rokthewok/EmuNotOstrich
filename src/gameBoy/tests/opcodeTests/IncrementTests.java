@@ -94,4 +94,25 @@ public class IncrementTests {
 		
 		assertEquals( value, processor.getRegisters().getRegister( Register.DE ) );
 	}
+	
+	@Test
+	public void testIncDExcecution() {
+		byte value = 14;
+		IProcessor processor = new GameBoyProcessor();
+		processor.getRegisters().setRegister( Register.D, value );
+		IOpcode incD = new IncD( processor );
+		
+		incD.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.D ) );
+		
+		value = (byte) 255;
+		processor.getRegisters().setRegister( Register.D, value );
+		
+		incD.execute();
+		value++;
+		
+		assertEquals( value, processor.getRegisters().getRegister( Register.D ) );
+	}
 }
