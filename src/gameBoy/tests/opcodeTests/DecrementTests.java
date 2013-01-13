@@ -1,0 +1,95 @@
+package gameBoy.tests.opcodeTests;
+
+import gameBoy.cpu.Flag;
+import gameBoy.cpu.GameBoyProcessor;
+import gameBoy.cpu.Register;
+import gameBoy.cpu.opcodes.decrement.*;
+import gameBoy.interfaces.IOpcode;
+import gameBoy.interfaces.IProcessor;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class DecrementTests {
+	private IProcessor processor;
+	private IOpcode op;
+	
+	@Before
+	public void setUp() {
+		this.processor = new GameBoyProcessor();
+	}
+	
+	@Test
+	public void testDec8() {
+		byte value = 13;
+		this.processor.getRegisters().setRegister(Register.A, value);
+		this.op = new DecA( this.processor );
+		
+		op.execute();
+		value--;
+		
+		Assert.assertEquals(value, this.processor.getRegisters().getRegister(Register.A));
+	}
+	
+	@Test
+	public void testDec16() {
+		byte value = 13;
+		this.processor.getRegisters().setRegister(Register.BC, value);
+		this.op = new DecBC( this.processor );
+		
+		op.execute();
+		value--;
+		
+		Assert.assertEquals(value, this.processor.getRegisters().getRegister(Register.BC));
+	}
+	
+	@Test
+	public void testDecAddrHL() {
+		// Needs to be implemented when memory works
+		Assert.assertEquals(true, false);
+	}
+	
+	@Test
+	public void testZFlag() {
+		byte value = 1;
+		this.processor.getRegisters().setRegister(Register.A, value);
+		this.op = new DecA( this.processor );
+		
+		op.execute();
+		
+		Assert.assertEquals((byte) 1, this.processor.getRegisters().getFlag(Flag.Z));
+	}
+	
+	@Test
+	public void testHFlag() {
+		byte value = (byte) 0x10;
+		this.processor.getRegisters().setRegister(Register.D, value);
+		this.op = new DecD( this.processor );
+		
+		op.execute();
+		
+		Assert.assertEquals((byte) 1, this.processor.getRegisters().getFlag(Flag.H));
+		
+		value = (byte) 0x30;
+		this.processor.getRegisters().setRegister(Register.D, value);
+		this.op = new DecD( this.processor );
+		
+		op.execute();
+		
+		Assert.assertEquals((byte) 1, this.processor.getRegisters().getFlag(Flag.H));
+	}
+	
+	@Test
+	public void testNFlag() {
+		
+		byte value = 13;
+		this.processor.getRegisters().setRegister(Register.A, value);
+		this.op = new DecA( this.processor );
+		
+		op.execute();
+		
+		Assert.assertEquals((byte) 1, this.processor.getRegisters().getFlag(Flag.N));
+	}
+}
