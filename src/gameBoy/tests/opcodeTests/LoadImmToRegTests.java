@@ -1,6 +1,5 @@
 package gameBoy.tests.opcodeTests;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 import gameBoy.cpu.opcodes.load.*;
 import gameBoy.cpu.GameBoyProcessor;
