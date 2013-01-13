@@ -8,4 +8,5 @@ public interface IRegister {
 	public short getRegister( Register register );
 	public void setFlagTo( Flag flag, boolean state );
 	public byte getFlag( Flag flag );
+	public void clearFlags();
 }
