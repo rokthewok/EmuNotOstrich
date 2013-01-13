@@ -47,9 +47,8 @@ public class DecrementTests {
 	
 	@Test
 	public void testDecAddrHL() {
-		short address = (short) 0xC000;
+		short address = (short) 0x0000;
 		byte data = 20;
-		System.out.println(this.processor.getMemory());
 		this.processor.getMemory().set8BitValue(address, data);
 		this.processor.getRegisters().setRegister( Register.HL , address);
 		this.op = new DecAddrHL( this.processor );
@@ -58,6 +57,8 @@ public class DecrementTests {
 		data--;
 		
 		Assert.assertEquals(data, this.processor.getMemory().get8BitValue(address));
+		
+		//Need to add flag tests because this opcode does not inherent from an abstract class
 	}
 	
 	@Test
