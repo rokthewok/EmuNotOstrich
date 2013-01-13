@@ -111,6 +111,57 @@ public class AdditionTests {
 
 	}
 	
+	@Test
+	public void testAddAAddrHl() {
+		short address = 0x100;
+		IProcessor processor = new GameBoyProcessor();
+		IOpcode add = new AddAAddrHl( processor );
+		
+		processor.getRegisters().setRegister( Register.HL, address );
+		
+		add.execute();
+		
+		assertEquals( 0, processor.getRegisters().getRegister( Register.A ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.Z ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+		
+		processor.getRegisters().setRegister( Register.A, (byte) 1 );
+		processor.getMemory().set8BitValue( address, (byte) 1 );
+		
+		add.execute();
+		
+		assertEquals( 2, processor.getRegisters().getRegister( Register.A ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.Z ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+		
+		processor.getRegisters().setRegister( Register.A, (byte) 2 );
+		processor.getMemory().set8BitValue( address, (byte) 14 );
+		
+		add.execute();
+		
+		assertEquals( 16, processor.getRegisters().getRegister( Register.A ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.Z ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+		
+		processor.getRegisters().setRegister( Register.A, (byte) 127 );
+		processor.getMemory().set8BitValue( address, (byte) 1 );
+		
+		add.execute();
+		
+		assertEquals( -128, processor.getRegisters().getRegister( Register.A ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.Z ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+
+	}
+	
 	private void do8BitTest( Register register, IOpcode add, IProcessor processor ) {
 		add.execute();
 		
