@@ -4,23 +4,19 @@ import gameBoy.cpu.Register;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
-/**
- * Implementation of the INC B instruction.
- * @author John Ruffer
- *
- */
-public class IncB implements IOpcode {
+public class IncDe implements IOpcode {
 	private static int cycles = 8;
 	private IProcessor processor;
 	
-	public IncB( IProcessor processor ) {
+	public IncDe( IProcessor processor ) {
 		this.processor = processor;
 	}
 	
 	@Override
 	public void execute() {
-		this.processor.getRegisters().setRegister( Register.B,
-				(byte) ( this.processor.getRegisters().getRegister( Register.B ) + 1 ) );
+		// Increment 16 bit register DE
+		this.processor.getRegisters().setRegister( Register.DE, 
+				(short) ( this.processor.getRegisters().getRegister( Register.DE ) + 1) );
 	}
 
 	@Override
