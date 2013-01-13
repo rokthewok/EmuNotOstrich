@@ -1,7 +1,6 @@
 package gameBoy.cpu.opcodes.increment;
 
 import gameBoy.cpu.Register;
-import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
 /**
@@ -9,18 +8,11 @@ import gameBoy.interfaces.IProcessor;
  * @author John Ruffer
  *
  */
-public class IncB implements IOpcode {
+public class IncB extends Increment {
 	private static int cycles = 8;
-	private IProcessor processor;
 	
 	public IncB( IProcessor processor ) {
-		this.processor = processor;
-	}
-	
-	@Override
-	public void execute() {
-		this.processor.getRegisters().setRegister( Register.B,
-				(byte) ( this.processor.getRegisters().getRegister( Register.B ) + 1 ) );
+		super(processor, Register.B);
 	}
 
 	@Override
