@@ -30,13 +30,16 @@ public class Memory implements IMemory {
 
 	@Override
 	public void set8BitValue( int address, byte data ) {
-		// TODO Auto-generated method stub
+		assert address >= 0 && address < MEMORY_SIZE;
 		
+		this.memory[address] = data;
 	}
 
 	@Override
 	public void set16BitValue( int address, short data ) {
-		// TODO Auto-generated method stub
+		assert address >= 0 && address < MEMORY_SIZE -1;
 		
+		this.set8BitValue( address, (byte) ( data >> 8 ) );
+		this.set8BitValue( address + 1, (byte) ( data & 0xFF ) );
 	}
 }
