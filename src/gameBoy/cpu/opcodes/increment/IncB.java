@@ -8,16 +8,10 @@ import gameBoy.interfaces.IProcessor;
  * @author John Ruffer
  *
  */
-public class IncB extends Increment {
-	private static int cycles = 8;
+public class IncB extends Increment8 {
 	
 	public IncB( IProcessor processor ) {
 		super(processor, Register.B);
-	}
-
-	@Override
-	public int getCycles() {
-		return cycles;
 	}
 
 }
