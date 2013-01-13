@@ -52,6 +52,17 @@ public class DecrementTests {
 	}
 	
 	@Test
+	public void testGetCycles() {
+		this.op = new DecBC( this.processor );
+		int dec16Cycles = 8;
+		Assert.assertEquals(dec16Cycles, this.op.getCycles());
+		
+		this.op = new DecD ( this.processor );
+		int dec8Cycles = 4;
+		Assert.assertEquals(dec8Cycles, this.op.getCycles());
+	}
+	
+	@Test
 	public void testZFlag() {
 		byte value = 1;
 		this.processor.getRegisters().setRegister(Register.A, value);
