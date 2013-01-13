@@ -3,7 +3,7 @@ package gameBoy.memory;
 import gameBoy.interfaces.IMemory;
 
 public class Memory implements IMemory {
-	public static int MEMORY_SIZE = 8192 * 1024;	// 8kB of memory
+	public static int MEMORY_SIZE = 0xFFFF;	// 0x0000 - 0xFFFF
 	private byte[] memory;
 	
 	public Memory() {
