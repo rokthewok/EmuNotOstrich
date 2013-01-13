@@ -12,7 +12,7 @@ import gameBoy.interfaces.IProcessor;
  *
  */
 
-public abstract class Increment implements IOpcode{
+public abstract class Increment implements IOpcode {
 	private Register register;
 	private IProcessor processor;
 	
