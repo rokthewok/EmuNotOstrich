@@ -14,8 +14,8 @@ public class Memory implements IMemory {
 	public int get16BitValue( int address ) {
 		if( address >= 0 || address < MEMORY_SIZE -1 ) {
 			int value = this.memory[address];
-			value = (short) ( value << 8 );
-			value |= ( (short) ( 0x00FF & this.memory[address + 1] ) );
+			value = value << 8;
+			value |= 0x00FF & this.memory[address + 1];
 			return value;
 		} else {
 			return 0;
@@ -42,7 +42,7 @@ public class Memory implements IMemory {
 	public void set16BitValue( int address, int data ) {
 		assert address >= 0 && address < MEMORY_SIZE -1;
 		
-		this.set8BitValue( address, (byte) ( ( data & 0xFF00 ) >> 8 ) );
-		this.set8BitValue( address + 1, (byte) ( data & 0x00FF ) );
+		this.set8BitValue( address,( data & 0xFF00 ) >> 8 );
+		this.set8BitValue( address + 1, data & 0x00FF );
 	}
 }
