@@ -1,10 +1,11 @@
 package gameBoy.cpu.opcodes.load.loadImmToReg;
 
 import gameBoy.cpu.Register;
+import gameBoy.cpu.opcodes.TwoByteOpcode;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public abstract class LoadImmToReg8 implements IOpcode{
+public abstract class LoadImmToReg8 extends TwoByteOpcode {
 	private static int cycles = 8;
 	private IProcessor processor;
 	private Register register;
