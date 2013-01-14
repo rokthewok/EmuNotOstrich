@@ -29,7 +29,7 @@ public class AddImmToSp extends TwoByteOpcode {
 			this.processor.getRegisters().setFlagTo( Flag.H, false );
 		}
 		
-		if( result > Short.MAX_VALUE ) {
+		if( ( result & 0xF00) != 0 ) {
 			this.processor.getRegisters().setFlagTo( Flag.C, true );
 		} else {
 			this.processor.getRegisters().setFlagTo( Flag.C, false );

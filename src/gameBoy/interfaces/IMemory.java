@@ -1,8 +1,8 @@
 package gameBoy.interfaces;
 
 public interface IMemory {
-	public short get16BitValue( int address );
-	public byte get8BitValue( int address );
-	public void set8BitValue( int address, byte data );
-	public void set16BitValue( int address, short data );
+	public int get16BitValue( int address );
+	public int get8BitValue( int address );
+	public void set8BitValue( int address, int data );
+	public void set16BitValue( int address, int data );
 }

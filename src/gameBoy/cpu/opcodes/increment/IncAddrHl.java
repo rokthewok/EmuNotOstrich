@@ -16,7 +16,7 @@ public class IncAddrHl implements IOpcode {
 	
 	@Override
 	public void execute() {
-		short address = this.processor.getRegisters().getRegister( Register.HL );
+		int address = this.processor.getRegisters().getRegister( Register.HL );
 		byte result = (byte) ( this.processor.getMemory().get8BitValue( address ) + 1 );
 		
 //		this.processor.getRegisters().clearFlags();

@@ -4,16 +4,16 @@ import gameBoy.interfaces.IMemory;
 
 public class Memory implements IMemory {
 	public static int MEMORY_SIZE = 0xFFFF;	// 0x0000 - 0xFFFF
-	private byte[] memory;
+	private int[] memory;
 	
 	public Memory() {
-		this.memory = new byte[MEMORY_SIZE];
+		this.memory = new int[MEMORY_SIZE];
 	}
 	
 	@Override
-	public short get16BitValue( int address ) {
+	public int get16BitValue( int address ) {
 		if( address >= 0 || address < MEMORY_SIZE -1 ) {
-			short value = this.memory[address];
+			int value = this.memory[address];
 			value = (short) ( value << 8 );
 			value |= ( (short) ( 0x00FF & this.memory[address + 1] ) );
 			return value;
@@ -23,8 +23,8 @@ public class Memory implements IMemory {
 	}
 	
 	@Override
-	public byte get8BitValue( int address ) {
-		if( address >= 0 || address < MEMORY_SIZE ) {
+	public int get8BitValue( int address ) {
+		if( address >= 0 && address < MEMORY_SIZE ) {
 			return this.memory[address];
 		} else {
 			return 0;
@@ -32,14 +32,14 @@ public class Memory implements IMemory {
 	}
 
 	@Override
-	public void set8BitValue( int address, byte data ) {
+	public void set8BitValue( int address, int data ) {
 		assert address >= 0 && address < MEMORY_SIZE;
 		
 		this.memory[address] = data;
 	}
 
 	@Override
-	public void set16BitValue( int address, short data ) {
+	public void set16BitValue( int address, int data ) {
 		assert address >= 0 && address < MEMORY_SIZE -1;
 		
 		this.set8BitValue( address, (byte) ( ( data & 0xFF00 ) >> 8 ) );

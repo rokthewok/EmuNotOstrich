@@ -14,7 +14,7 @@ public class AddAAddrHl extends Addition8 {
 	
 	@Override
 	public void execute() {
-		short address = this.processor.getRegisters().getRegister( Register.HL );
+		int address = this.processor.getRegisters().getRegister( Register.HL );
 		int n = this.processor.getMemory().get8BitValue( address );
 		int A = this.processor.getRegisters().getRegister( Register.A );
 		
