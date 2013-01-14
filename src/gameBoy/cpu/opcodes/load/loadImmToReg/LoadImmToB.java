@@ -8,5 +8,4 @@ public class LoadImmToB extends LoadImmToReg8 {
 	public LoadImmToB(IProcessor processor, byte immediate) {
 		super(processor, Register.B, immediate);
 	}
-
 }

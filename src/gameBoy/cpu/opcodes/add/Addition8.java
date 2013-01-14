@@ -2,7 +2,7 @@ package gameBoy.cpu.opcodes.add;
 
 import gameBoy.cpu.Flag;
 import gameBoy.cpu.Register;
-import gameBoy.interfaces.IOpcode;
+import gameBoy.cpu.opcodes.OneByteOpcode;
 import gameBoy.interfaces.IProcessor;
 
 /**
@@ -10,8 +10,7 @@ import gameBoy.interfaces.IProcessor;
  * @author John Ruffer
  *
  */
-public abstract class Addition8 implements IOpcode {
-	private static byte opcodeLength = 1;
+public abstract class Addition8 extends OneByteOpcode {
 	private static int cycles = 4;
 	private IProcessor processor;
 	private Register register;
@@ -68,10 +67,5 @@ public abstract class Addition8 implements IOpcode {
 		}
 		
 		return result;
-	}
-	
-	@Override
-	public byte getOpcodeLength() {
-		return opcodeLength;
 	}
 }

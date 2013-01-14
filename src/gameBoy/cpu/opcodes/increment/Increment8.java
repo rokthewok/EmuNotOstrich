@@ -2,11 +2,10 @@ package gameBoy.cpu.opcodes.increment;
 
 import gameBoy.cpu.Flag;
 import gameBoy.cpu.Register;
-import gameBoy.interfaces.IOpcode;
+import gameBoy.cpu.opcodes.OneByteOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public abstract class Increment8 implements IOpcode {
-	private static byte opcodeLength = 1;
+public abstract class Increment8 extends OneByteOpcode {
 	private static int cycles = 4;
 	private final Register register;
 	private IProcessor processor;
@@ -39,10 +38,5 @@ public abstract class Increment8 implements IOpcode {
 	@Override
 	public int getCycles() {
 		return cycles;
-	}
-
-	@Override
-	public byte getOpcodeLength() {
-		return opcodeLength;
 	}
 }

@@ -1,8 +1,6 @@
 package gameBoy.cpu.opcodes;
 
-import gameBoy.interfaces.IOpcode;
-
-public class Nop implements IOpcode {
+public class Nop extends OneByteOpcode {
 	private static int cycles = 4;
 	
 	@Override
