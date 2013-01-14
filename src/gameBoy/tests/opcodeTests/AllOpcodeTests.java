@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ IncrementTests.class, AdditionTests.class, DecrementTests.class, 
-	LoadImmToRegTests.class, LoadRegToRegTests.class })
+	LoadImmToRegTests.class, LoadRegToRegTests.class, AndTests.class, OrTests.class })
 public class AllOpcodeTests {
 
 }
