@@ -3,7 +3,6 @@ package gameBoy.cpu.opcodes.add;
 import gameBoy.cpu.Flag;
 import gameBoy.cpu.Register;
 import gameBoy.cpu.opcodes.OneByteOpcode;
-import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
 public abstract class Addition16 extends OneByteOpcode {
