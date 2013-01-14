@@ -30,7 +30,7 @@ public class MemoryTests {
 		assertEquals( (short) 0, memory.get16BitValue( sixteenBitAddr ) );
 		
 		memory.set16BitValue( sixteenBitAddr, (short) 36812 );
-		assertEquals( (short) 36812, memory.get16BitValue( sixteenBitAddr ) );
+		assertEquals( 36812, memory.get16BitValue( sixteenBitAddr ) );
 	}
 	
 	@Test

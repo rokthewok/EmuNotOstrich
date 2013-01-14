@@ -18,15 +18,20 @@ public class GameBoyRegistersTests {
 
 	@Test
 	public void testRegisters() {
-		registers.setRegister(Register.A, (short)12);
+		registers.setRegister(Register.A, 12);
 		Assert.assertEquals(12, registers.getRegister(Register.A));
 		
-		registers.setRegister(Register.DE, (short)257);
+		registers.setRegister(Register.DE, 257);
 		Assert.assertEquals(1, registers.getRegister(Register.D));
 		Assert.assertEquals(1, registers.getRegister(Register.E));
 		Assert.assertEquals(257, registers.getRegister(Register.DE));
 		
-		registers.setRegister(Register.PC, (short)12);
+		registers.setRegister(Register.HL, 0xFF00);
+		Assert.assertEquals(0, registers.getRegister(Register.L));
+		Assert.assertEquals(0xFF, registers.getRegister(Register.H));
+		Assert.assertEquals(0xFF00, registers.getRegister(Register.HL));
+		
+		registers.setRegister(Register.PC, 12);
 		Assert.assertEquals(12, registers.getRegister(Register.PC));
 	}
 	

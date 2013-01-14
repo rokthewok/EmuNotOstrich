@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ GameBoyProcessorTests.class, GameBoyRegistersTests.class,
-				MemoryTests.class, AllOpcodeTests.class })
+		MemoryTests.class, AllOpcodeTests.class })
 public class AllTests {
 
 }

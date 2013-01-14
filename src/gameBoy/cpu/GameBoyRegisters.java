@@ -36,13 +36,13 @@ public class GameBoyRegisters implements IRegister {
 	}
 	
 	private void set8BitRegister(Register reg, int data) {
-		registers[this.getRegisterIndex(reg)] = (byte)data;
+		registers[this.getRegisterIndex(reg)] =  data;
 	}
 	
 	private void set16BitRegisterFromTwo8Bit(Register x, Register y, int data) {
-		byte xData, yData;
-		xData = (byte) ((data & 0xFF00) >> 8);
-		yData = (byte) (data & 0x00FF);
+		int xData, yData;
+		xData = ((data & 0xFF00) >> 8);
+		yData = (data & 0x00FF);
 		registers[this.getRegisterIndex(x)] = xData;
 		registers[this.getRegisterIndex(y)] = yData;
 	}
@@ -181,10 +181,10 @@ public class GameBoyRegisters implements IRegister {
 		return index;
 	}
 	
-	private short combine8BitRegisters(Register x, Register y) {
+	private int combine8BitRegisters(Register x, Register y) {
 		
 		int X = this.registers[this.getRegisterIndex(x)];
 		int Y = this.registers[this.getRegisterIndex(y)];
-		return (short) ( ( X << 8 ) | ( Y & 0xFF ) );	// silly things because of Java casting
+		return ( X << 8 ) | ( Y & 0xFF );	// silly things because of Java casting
 	}
 }
