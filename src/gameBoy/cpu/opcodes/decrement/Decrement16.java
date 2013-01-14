@@ -1,10 +1,10 @@
 package gameBoy.cpu.opcodes.decrement;
 
 import gameBoy.cpu.Register;
-import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
+import gameBoy.cpu.opcodes.TwoByteOpcode;
 
-public abstract class Decrement16 implements IOpcode {
+public abstract class Decrement16 extends TwoByteOpcode {
 	private static int cycles = 8;
 	private Register register;
 	private IProcessor processor;

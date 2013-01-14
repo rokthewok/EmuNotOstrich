@@ -29,4 +29,10 @@ public class DecAddrHL implements IOpcode {
 		return cycles;
 	}
 
+	@Override
+	public byte getOpcodeLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
