@@ -219,7 +219,7 @@ public class AdditionTests {
 
 		add.execute();
 		
-		assertEquals( Short.MIN_VALUE, processor.getRegisters().getRegister( Register.HL ) );
+		assertEquals( Short.MIN_VALUE, (short) processor.getRegisters().getRegister( Register.HL ) );
 		assertEquals( 1, processor.getRegisters().getFlag( Flag.C ) );
 		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
 		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
@@ -344,7 +344,7 @@ public class AdditionTests {
 
 		add.execute();
 		
-		assertEquals( Short.MIN_VALUE, processor.getRegisters().getRegister( Register.HL ) );
+		assertEquals( Short.MIN_VALUE, (short) processor.getRegisters().getRegister( Register.HL ) );
 		assertEquals( 1, processor.getRegisters().getFlag( Flag.C ) );
 		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
 		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
