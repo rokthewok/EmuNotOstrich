@@ -4,7 +4,7 @@ import junit.framework.Assert;
 import gameBoy.cpu.GameBoyProcessor;
 import gameBoy.cpu.Register;
 import gameBoy.cpu.opcodes.load.loadRegToReg.LoadAToA8;
-import gameBoy.cpu.opcodes.load.loadRegToReg.LoadImmToAddrHL;
+import gameBoy.cpu.opcodes.load.loadRegToReg.LoadImmToAddrHL8;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
@@ -22,7 +22,7 @@ public class LoadRegToRegTests {
 
 	@Test
 	public void testLoadImmToAddrHL() {
-		this.opcode = new LoadImmToAddrHL( this.processor );
+		this.opcode = new LoadImmToAddrHL8( this.processor );
 		
 		int value = 0xFF;
 		int address = 0xA000;
@@ -30,7 +30,7 @@ public class LoadRegToRegTests {
 		//Set PC to location of opcode
 		this.processor.getRegisters().setRegister( Register.PC , 0xC000 );
 		//Set parameter of opcode
-		this.processor.getMemory().set8BitValue(0xC008, value);
+		this.processor.getMemory().set8BitValue(0xC001, value);
 		this.processor.getRegisters().setRegister(Register.HL, address);
 		
 		this.opcode.execute();
