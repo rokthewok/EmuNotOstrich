@@ -1,6 +1,5 @@
 package gameBoy.tests.opcodeTests;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 import gameBoy.cpu.GameBoyProcessor;
 import gameBoy.cpu.Register;
@@ -25,15 +24,18 @@ public class LoadRegToRegTests {
 	public void testLoadImmToAddrHL() {
 		this.opcode = new LoadImmToAddrHL( this.processor );
 		
-		byte value = (byte) 0xFF;
-		short address = (short) 0xC000;
-		this.processor.getRegisters().setRegister( Register.PC , (short)(0xFF00));
-		Assert.assertEquals((short)0xFF00, this.processor.getRegisters().getRegister(Register.PC));
+		int value = 0xFF;
+		int address = 0xA000;
+		System.out.println(address);
+		//Set PC to location of opcode
+		this.processor.getRegisters().setRegister( Register.PC , 0xC000 );
+		//Set parameter of opcode
+		this.processor.getMemory().set8BitValue(0xC008, value);
 		this.processor.getRegisters().setRegister(Register.HL, address);
 		
 		this.opcode.execute();
 		
-		Assert.assertEquals((byte) 0xFF, this.processor.getMemory().get8BitValue(address));
+		Assert.assertEquals(value, this.processor.getMemory().get8BitValue(address));
 	}
 	
 	@Test

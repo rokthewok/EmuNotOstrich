@@ -12,12 +12,10 @@ public class LoadImmToAddrHL extends TwoByteOpcode {
 		this.processor = processor;
 	}
 	
-	@Override
 	public void execute() {
-		short HL = this.processor.getRegisters().getRegister( Register.HL );
-		System.out.println(HL);
-		byte immediate = this.processor.getMemory().get8BitValue(
-				this.processor.getRegisters().getRegister( Register.PC ) + 0x100);
+		int HL = this.processor.getRegisters().getRegister( Register.HL );
+		int immediate = this.processor.getMemory().get8BitValue(
+							this.processor.getRegisters().getRegister( Register.PC ) + 0x8);
 		System.out.println(immediate);
 		this.processor.getMemory().set8BitValue(HL, immediate);
 	}
