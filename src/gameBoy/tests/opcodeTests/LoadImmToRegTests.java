@@ -1,7 +1,8 @@
 package gameBoy.tests.opcodeTests;
 
 import junit.framework.Assert;
-import gameBoy.cpu.opcodes.load.LoadImmToReg.*;
+import gameBoy.cpu.opcodes.load.loadImmToReg.LoadImmToB;
+import gameBoy.cpu.opcodes.load.loadImmToReg.LoadImmToBC;
 import gameBoy.cpu.GameBoyProcessor;
 import gameBoy.cpu.Register;
 import gameBoy.interfaces.IOpcode;
