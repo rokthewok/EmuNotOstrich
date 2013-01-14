@@ -182,8 +182,8 @@ public class GameBoyRegisters implements IRegister {
 	
 	private short combine8BitRegisters(Register x, Register y) {
 		
-		short X = this.registers[this.getRegisterIndex(x)];
-		short Y = this.registers[this.getRegisterIndex(y)];
-		return (short) (X << 8 | Y);
+		int X = this.registers[this.getRegisterIndex(x)];
+		int Y = this.registers[this.getRegisterIndex(y)];
+		return (short) ( ( X << 8 ) | ( Y & 0xFF ) );	// silly things because of Java casting
 	}
 }
