@@ -17,7 +17,7 @@ public class DecAddrHL implements IOpcode {
 	public void execute() {
 		this.processor.getRegisters().setFlagTo(Flag.N, true);
 		short address = this.processor.getRegisters().getRegister( Register.HL );
-		byte data = (byte) ( this.processor.getMemory().get8BitValue( address ) + 1 );
+		byte data = (byte) ( this.processor.getMemory().get8BitValue( address ));
 		this.processor.getRegisters().setFlagTo(Flag.H, (data & 0x10) >= 0x10);
 		data--;
 		this.processor.getRegisters().setFlagTo(Flag.Z, data == 0);
