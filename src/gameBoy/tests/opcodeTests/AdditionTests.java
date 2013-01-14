@@ -166,6 +166,15 @@ public class AdditionTests {
 
 	}
 	
+	@Test
+	public void testAddHlBc() {
+		IProcessor processor = new GameBoyProcessor();
+		IOpcode add = new AddHlBc( processor );
+		
+		this.do16BitTest( Register.BC, add, processor );
+
+	}
+	
 	private void do8BitTest( Register register, IOpcode add, IProcessor processor ) {
 		assertEquals( 4, add.getCycles() );
 		
@@ -207,6 +216,47 @@ public class AdditionTests {
 		assertEquals( 1, processor.getRegisters().getFlag( Flag.C ) );
 		assertEquals( 0, processor.getRegisters().getFlag( Flag.Z ) );
 		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+	}
+	
+	private void do16BitTest( Register register, IOpcode add, IProcessor processor ) {
+		assertEquals( 8, add.getCycles() );
+		
+		add.execute();
+		
+		assertEquals( 0, processor.getRegisters().getRegister( Register.HL ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+
+		processor.getRegisters().setRegister( register, (short) 1 );
+		processor.getRegisters().setRegister( Register.HL, (short) 0b111111111111 );
+		
+		add.execute();
+		
+		assertEquals( 0b1000000000000, processor.getRegisters().getRegister( Register.HL ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+		
+		processor.getRegisters().setRegister( register, (short) 1 );
+		processor.getRegisters().setRegister( Register.HL, Short.MAX_VALUE );
+
+		add.execute();
+		
+		assertEquals( Short.MIN_VALUE, processor.getRegisters().getRegister( Register.HL ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 1, processor.getRegisters().getFlag( Flag.H ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
+		
+		processor.getRegisters().setRegister( register, (short) 300 );
+		processor.getRegisters().setRegister( Register.HL, (short) 100 );
+		
+		add.execute();
+		
+		assertEquals( 400, processor.getRegisters().getRegister( Register.HL ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.C ) );
+		assertEquals( 0, processor.getRegisters().getFlag( Flag.H ) );
 		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
 	}
 }
