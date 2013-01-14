@@ -1,6 +1,16 @@
 package gameBoy.cpu;
 
-public class Opcodes {
+import gameBoy.cpu.opcodes.add.*;
+import gameBoy.interfaces.IOpcode;
+import gameBoy.interfaces.IOpcodeMap;
+import gameBoy.interfaces.IProcessor;
+
+import java.util.Map;
+import java.util.HashMap;
+
+public class Opcodes implements IOpcodeMap {
+	private Map<Integer, IOpcode> opcodeMap;
+	
 	public static int NOP = 0x00;
 	public static int RLC_A = 0x07;
 	
@@ -122,4 +132,18 @@ public class Opcodes {
 	public static int SUB_A_ADDR_HL = 0x96;
 	public static int SUB_A_A = 0x97;
 	public static int SUB_A_N = 0xD6;
+	
+	@Override
+	public void initializeOpcodes( IProcessor processor ) {
+		this.opcodeMap = new HashMap<Integer, IOpcode>();
+		// add IOpcodes to the map here...
+		this.opcodeMap.put( ADD_A_A, new AddAA( processor ) );
+		this.opcodeMap.put( ADD_A_ADDR_HL, new AddAAddrHl( processor ) );
+		this.opcodeMap.put( ADD_A_B, new AddAB( processor ) );
+	}
+	
+	@Override
+	public IOpcode getOpcode( int opcode ) {
+		return this.opcodeMap.get( opcode );
+	}
 }

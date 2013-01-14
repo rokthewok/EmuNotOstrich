@@ -28,6 +28,7 @@ public class GameBoyRegisters implements IRegister {
 			break;
 		case SP:
 			this.set16BitRegister(reg, data);
+			break;
 		default:
 			this.set8BitRegister(reg, data);
 			break;
@@ -75,8 +76,8 @@ public class GameBoyRegisters implements IRegister {
 		case SP:
 			// since PC and SP are 16 bit registers, we need to concatenate 
 			// the data at index and index + 1
-			register = (short) ( this.registers[this.getRegisterIndex( reg )] << 8 |
-							this.registers[this.getRegisterIndex( reg ) + 1] );
+			register = (short) ( ( this.registers[this.getRegisterIndex( reg )] << 8 ) |
+							( this.registers[this.getRegisterIndex( reg ) + 1] & 0xFF ) );
 			break;
 		default:
 			register = registers[this.getRegisterIndex(reg)];
@@ -182,8 +183,8 @@ public class GameBoyRegisters implements IRegister {
 	
 	private short combine8BitRegisters(Register x, Register y) {
 		
-		short X = this.registers[this.getRegisterIndex(x)];
-		short Y = this.registers[this.getRegisterIndex(y)];
-		return (short) (X << 8 | Y);
+		int X = this.registers[this.getRegisterIndex(x)];
+		int Y = this.registers[this.getRegisterIndex(y)];
+		return (short) ( ( X << 8 ) | ( Y & 0xFF ) );	// silly things because of Java casting
 	}
 }
