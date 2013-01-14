@@ -234,6 +234,11 @@ public class AdditionTests {
 		assertEquals( 0, processor.getRegisters().getFlag( Flag.N ) );
 	}
 	
+	@Test
+	public void AddImmToSp() {
+		fail( "Class needs to be implemented" );
+	}
+	
 	private void do8BitTest( Register register, IOpcode add, IProcessor processor ) {
 		assertEquals( 4, add.getCycles() );
 		
