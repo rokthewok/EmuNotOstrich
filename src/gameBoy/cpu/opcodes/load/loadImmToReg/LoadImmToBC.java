@@ -8,5 +8,4 @@ public class LoadImmToBC extends LoadImmToReg16 {
 	public LoadImmToBC(IProcessor processor, short immediate) {
 		super(processor, Register.BC, immediate);
 	}
-
 }
