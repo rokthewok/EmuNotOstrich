@@ -11,6 +11,7 @@ import gameBoy.interfaces.IProcessor;
  *
  */
 public abstract class Addition8 implements IOpcode {
+	private static byte opcodeLength = 1;
 	private static int cycles = 4;
 	private IProcessor processor;
 	private Register register;
@@ -67,5 +68,10 @@ public abstract class Addition8 implements IOpcode {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public byte getOpcodeLength() {
+		return opcodeLength;
 	}
 }

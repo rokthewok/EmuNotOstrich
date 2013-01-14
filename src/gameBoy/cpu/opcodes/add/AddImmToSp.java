@@ -22,4 +22,10 @@ public class AddImmToSp implements IOpcode {
 		return 0;
 	}
 
+	@Override
+	public byte getOpcodeLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

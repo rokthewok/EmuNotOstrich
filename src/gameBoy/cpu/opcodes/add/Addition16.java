@@ -5,7 +5,8 @@ import gameBoy.cpu.Register;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public class Addition16 implements IOpcode {
+public abstract class Addition16 implements IOpcode {
+	private static byte opcodeLength = 1;
 	private static int cycles = 8;
 	private IProcessor processor;
 	private Register register;
@@ -51,5 +52,10 @@ public class Addition16 implements IOpcode {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public byte getOpcodeLength() {
+		return opcodeLength;
 	}
 }

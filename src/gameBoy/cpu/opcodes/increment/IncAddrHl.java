@@ -6,6 +6,7 @@ import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
 public class IncAddrHl implements IOpcode {
+	private static byte opcodeLength = 1;
 	private static int cycles = 12;
 	private IProcessor processor;
 	
@@ -39,4 +40,8 @@ public class IncAddrHl implements IOpcode {
 		return cycles;
 	}
 
+	@Override
+	public byte getOpcodeLength() {
+		return opcodeLength;
+	}
 }

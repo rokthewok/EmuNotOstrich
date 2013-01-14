@@ -1,4 +1,4 @@
-package gameBoy.cpu.opcodes.load;
+package gameBoy.cpu.opcodes.load.LoadImmToReg;
 
 import gameBoy.cpu.Register;
 import gameBoy.interfaces.IOpcode;

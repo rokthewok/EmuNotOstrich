@@ -13,6 +13,7 @@ import gameBoy.interfaces.IProcessor;
  */
 
 public abstract class Increment16 implements IOpcode {
+	private static byte opcodeLength = 1;
 	private static int cycles = 8;
 	private Register register;
 	private IProcessor processor;
@@ -39,5 +40,10 @@ public abstract class Increment16 implements IOpcode {
 	
 	public int getCycles() {
 		return cycles;
+	}
+	
+	@Override
+	public byte getOpcodeLength() {
+		return opcodeLength;
 	}
 }
