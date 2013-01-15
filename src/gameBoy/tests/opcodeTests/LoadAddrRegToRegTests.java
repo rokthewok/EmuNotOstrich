@@ -60,7 +60,7 @@ public class LoadAddrRegToRegTests {
 	
 	@Test
 	public void LoadAddrHLToAThenDecHL() {
-		this.opcode = new LoadAddrHLToAThenDecHL( this.processor );
+		this.opcode = new LoadAddrHLToAThenIncHL( this.processor );
 		int address = 0xC000;
 		int data = 20;
 		this.processor.getMemory().set8BitValue(address, data);

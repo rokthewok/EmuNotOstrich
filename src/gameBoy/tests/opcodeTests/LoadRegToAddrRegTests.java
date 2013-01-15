@@ -19,7 +19,6 @@ public class LoadRegToAddrRegTests {
 		this.processor = new GameBoyProcessor();
 	}
 
-	
 	@Test
 	public void testLoadRegToAddrHL8() {
 		this.opcode = new LoadBToAddrHL8( this.processor );
@@ -45,5 +44,21 @@ public class LoadRegToAddrRegTests {
 		this.opcode.execute();
 		
 		Assert.assertEquals(data, this.processor.getMemory().get8BitValue(address));
+	}
+	
+	@Test
+	public void testLoadAToAddrHLThenDecHL() {
+		this.opcode = new LoadAToAddrHLThenDecHL( this.processor );
+		int address = 0xC000;
+		int data = 20;
+		this.processor.getRegisters().setRegister( Register.HL, address);
+		this.processor.getRegisters().setRegister( Register.A, data );
+		
+		this.opcode.execute();
+		
+		Assert.assertEquals(data, this.processor.getMemory().get8BitValue(address));
+		address--;
+		Assert.assertEquals(address, this.processor.getRegisters().getRegister( Register.HL ));
+		
 	}
 }
