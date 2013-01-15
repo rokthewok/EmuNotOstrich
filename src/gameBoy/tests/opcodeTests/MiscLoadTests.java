@@ -50,4 +50,30 @@ public class MiscLoadTests {
 		
 		assertEquals(immediate, this.processor.getRegisters().getRegister(Register.A));
 	}
+	
+	@Test 
+	public void testLoadAddrFF00PlusCToA() {
+		this.opcode = new LoadAddrFF00PlusCToA( this.processor );
+		int data = 0xDC;
+		int cData = 0xCC;
+		this.processor.getRegisters().setRegister(Register.C, cData);
+		this.processor.getMemory().set8BitValue(0xFF00 + cData, data);
+		
+		this.opcode.execute();
+		
+		assertEquals( data, this.processor.getRegisters().getRegister( Register.A ));
+	}
+	
+	@Test
+	public void testLoadAToAddrFF00PlusC() {
+		this.opcode = new LoadAToAddrFF00PlusC( this.processor );
+		int data = 0xDC;
+		int cData = 0xCC;
+		this.processor.getRegisters().setRegister( Register.A , data);
+		this.processor.getRegisters().setRegister( Register.C, cData);
+		
+		this.opcode.execute();
+		
+		assertEquals( data, this.processor.getMemory().get8BitValue(0xFF00 + cData) );
+	}
 }
