@@ -76,4 +76,34 @@ public class MiscLoadTests {
 		
 		assertEquals( data, this.processor.getMemory().get8BitValue(0xFF00 + cData) );
 	}
+	
+	@Test 
+	public void testLoadAToAddrFF00PlusImm8() {
+		this.opcode = new LoadAToAddrFF00PlusImm8( this.processor );
+		int data = 0xDC;
+		int pcAddress = 0xDCDC;
+		int immData = 0xCC;
+		this.processor.getRegisters().setRegister( Register.A , data);
+		this.processor.getRegisters().setRegister(Register.PC, pcAddress);
+		this.processor.getMemory().set8BitValue(pcAddress + 1, immData);
+		
+		this.opcode.execute();
+		
+		assertEquals( data, this.processor.getMemory().get8BitValue(0xFF00 + immData) );
+	}
+	
+	@Test
+	public void testAddrFF00PlusImm8ToA8() {
+		this.opcode = new LoadAddrFF00PlusImm8ToA8( this.processor );
+		int data = 0xDC;
+		int pcAddress = 0xDCDC;
+		int immData = 0xDD;
+		this.processor.getRegisters().setRegister(Register.PC, pcAddress);
+		this.processor.getMemory().set8BitValue(pcAddress + 1, immData);
+		this.processor.getMemory().set8BitValue(0xFF00 + immData, data);
+		
+		this.opcode.execute();
+		
+		assertEquals( data, this.processor.getRegisters().getRegister( Register.A ));
+	}
 }
