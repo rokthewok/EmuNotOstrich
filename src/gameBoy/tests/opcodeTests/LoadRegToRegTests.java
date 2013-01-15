@@ -20,8 +20,8 @@ public class LoadRegToRegTests {
 	}
 
 	@Test
-	public void testLoadImmToAddrHL() {
-		this.opcode = new LoadImmToAddrHL8( this.processor );
+	public void testLoadImm8ToAddrHL() {
+		this.opcode = new LoadImm8ToAddrHL8( this.processor );
 		
 		int value = 0xFF;
 		int address = 0xA000;
@@ -37,7 +37,7 @@ public class LoadRegToRegTests {
 	}
 	
 	@Test
-	public void testLoadRegToReg8() {
+	public void testLoadReg8ToReg8() {
 		//A
 		this.opcode = new LoadAToA8( this.processor );
 		this.loadRegToReg8(Register.A, Register.A);

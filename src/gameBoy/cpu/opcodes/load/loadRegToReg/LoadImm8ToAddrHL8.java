@@ -4,11 +4,11 @@ import gameBoy.cpu.Register;
 import gameBoy.cpu.opcodes.TwoByteOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public class LoadImmToAddrHL8 extends TwoByteOpcode {
+public class LoadImm8ToAddrHL8 extends TwoByteOpcode {
 	private static int cycles = 12;
 	private IProcessor processor;
 	
-	public LoadImmToAddrHL8( IProcessor processor ) {
+	public LoadImm8ToAddrHL8( IProcessor processor ) {
 		this.processor = processor;
 	}
 	
