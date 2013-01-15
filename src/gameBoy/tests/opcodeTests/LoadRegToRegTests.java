@@ -37,6 +37,8 @@ public class LoadRegToRegTests {
 		this.opcode = new LoadLToA8( this.processor );
 		this.loadRegToReg8(Register.A, Register.L);
 		//B
+		this.opcode = new LoadAToB8( this.processor );
+		this.loadRegToReg8(Register.B, Register.A);
 		this.opcode = new LoadBToB8( this.processor );
 		this.loadRegToReg8(Register.B, Register.B);
 		this.opcode = new LoadCToB8( this.processor );
@@ -50,6 +52,8 @@ public class LoadRegToRegTests {
 		this.opcode = new LoadLToB8( this.processor );
 		this.loadRegToReg8(Register.B, Register.L);
 		//C
+		this.opcode = new LoadAToC8( this.processor );
+		this.loadRegToReg8(Register.C, Register.A);
 		this.opcode = new LoadBToC8( this.processor );
 		this.loadRegToReg8(Register.C, Register.B);
 		this.opcode = new LoadCToC8( this.processor );
@@ -63,6 +67,8 @@ public class LoadRegToRegTests {
 		this.opcode = new LoadLToC8( this.processor );
 		this.loadRegToReg8(Register.C, Register.L);
 		//D
+		this.opcode = new LoadAToD8( this.processor );
+		this.loadRegToReg8(Register.D, Register.A);
 		this.opcode = new LoadBToD8( this.processor );
 		this.loadRegToReg8(Register.D, Register.B);
 		this.opcode = new LoadCToD8( this.processor );
@@ -76,6 +82,8 @@ public class LoadRegToRegTests {
 		this.opcode = new LoadLToD8( this.processor );
 		this.loadRegToReg8(Register.D, Register.L);
 		//E
+		this.opcode = new LoadAToE8( this.processor );
+		this.loadRegToReg8(Register.E, Register.A);
 		this.opcode = new LoadBToE8( this.processor );
 		this.loadRegToReg8(Register.E, Register.B);
 		this.opcode = new LoadCToE8( this.processor );
@@ -89,6 +97,8 @@ public class LoadRegToRegTests {
 		this.opcode = new LoadLToE8( this.processor );
 		this.loadRegToReg8(Register.E, Register.L);
 		//H
+		this.opcode = new LoadAToH8( this.processor );
+		this.loadRegToReg8(Register.H, Register.A);
 		this.opcode = new LoadBToH8( this.processor );
 		this.loadRegToReg8(Register.H, Register.B);
 		this.opcode = new LoadCToH8( this.processor );
@@ -102,6 +112,8 @@ public class LoadRegToRegTests {
 		this.opcode = new LoadLToH8( this.processor );
 		this.loadRegToReg8(Register.H, Register.L);
 		//L
+		this.opcode = new LoadAToL8( this.processor );
+		this.loadRegToReg8(Register.L, Register.A);
 		this.opcode = new LoadBToL8( this.processor );
 		this.loadRegToReg8(Register.L, Register.B);
 		this.opcode = new LoadCToL8( this.processor );
