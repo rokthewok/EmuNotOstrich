@@ -15,7 +15,8 @@ public abstract class LoadReg8ToAddrHL8 extends OneByteOpcode {
 	}
 	
 	public void execute() {
-		this.processor.getMemory().set8BitValue(this.processor.getRegisters().getRegister( Register.HL ), 
+		this.processor.getMemory().set8BitValue(
+				this.processor.getRegisters().getRegister( Register.HL ), 
 				this.processor.getRegisters().getRegister( from ));
 	}
 
