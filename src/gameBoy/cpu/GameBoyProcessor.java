@@ -3,7 +3,6 @@ package gameBoy.cpu;
 import gameBoy.interfaces.IMemory;
 import gameBoy.interfaces.IProcessor;
 import gameBoy.interfaces.IRegister;
-import gameBoy.interfaces.IVideoMemory;
 import gameBoy.interfaces.IOpcodeMap;
 import gameBoy.memory.Memory;
 
@@ -16,7 +15,6 @@ import gameBoy.memory.Memory;
 public class GameBoyProcessor implements IProcessor {
 	private IRegister registers;
 	private IMemory memory;
-	private IVideoMemory videoMemory;
 	private IOpcodeMap opcodeMap;
 	
 	public GameBoyProcessor() {
@@ -42,18 +40,13 @@ public class GameBoyProcessor implements IProcessor {
 	public void initialize() {
 		this.opcodeMap.initializeOpcodes( this );
 		
-		this.registers.setRegister( Register.SP, (short) 0xFFFE );
-		this.registers.setRegister( Register.PC, (short) 0x100 );
+		this.registers.setRegister( Register.SP, 0xFFFE );
+		this.registers.setRegister( Register.PC, 0x100 );
 	}
 
 	@Override
 	public IMemory getMemory() {
 		return this.memory;
-	}
-
-	@Override
-	public IMemory getVideoMemory() {
-		return this.videoMemory;
 	}
 
 	@Override
