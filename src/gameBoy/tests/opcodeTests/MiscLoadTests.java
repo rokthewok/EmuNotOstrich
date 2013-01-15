@@ -106,4 +106,20 @@ public class MiscLoadTests {
 		
 		assertEquals( data, this.processor.getRegisters().getRegister( Register.A ));
 	}
+	
+	@Test
+	public void testLoadSPToAddrImm16() {
+		this.opcode = new LoadSPToAddrImm16( this.processor );
+		int immediate = 0xFFF0;
+		int spData = 0xAAAA;
+		int pcData = 0xCCCC;
+		this.processor.getRegisters().setRegister( Register.SP, spData );
+		this.processor.getRegisters().setRegister( Register.PC , pcData );
+		this.processor.getMemory().set16BitValue( pcData + 1, immediate );
+		
+		this.opcode.execute();
+		
+		assertEquals( spData, this.processor.getMemory().get16BitValue(immediate));
+		assertEquals(20, this.opcode.getCycles() );
+	}
 }
