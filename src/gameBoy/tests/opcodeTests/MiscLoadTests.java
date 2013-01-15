@@ -3,7 +3,7 @@ package gameBoy.tests.opcodeTests;
 import static org.junit.Assert.*;
 import gameBoy.cpu.GameBoyProcessor;
 import gameBoy.cpu.Register;
-import gameBoy.cpu.opcodes.load.LoadAddrImm16ToA8;
+import gameBoy.cpu.opcodes.load.*;
 import gameBoy.interfaces.IOpcode;
 import gameBoy.interfaces.IProcessor;
 
@@ -19,6 +19,22 @@ public class MiscLoadTests {
 		this.processor = new GameBoyProcessor();
 	}
 
+	@Test
+	public void testLoadRegA8ToImmAddr16() {
+		this.opcode = new LoadA8ToAddrImm16( this.processor ); 
+		int PCaddress = 0xC000;
+		int immediate = 0xCCCC;
+		int A8value = 0xCC;
+		
+		this.processor.getRegisters().setRegister( Register.PC, PCaddress);
+		this.processor.getMemory().set16BitValue(PCaddress + 1, immediate);
+		this.processor.getRegisters().setRegister( Register.A , A8value );
+		
+		this.opcode.execute();
+		
+		assertEquals(A8value, this.processor.getMemory().get8BitValue(immediate));
+	}
+	
 	@Test
 	public void testLoadImmAddr16ToRegA8() {
 		this.opcode = new LoadAddrImm16ToA8( this.processor );
