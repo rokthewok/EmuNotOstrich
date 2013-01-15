@@ -61,4 +61,20 @@ public class LoadRegToAddrRegTests {
 		Assert.assertEquals(address, this.processor.getRegisters().getRegister( Register.HL ));
 		
 	}
+	
+	@Test
+	public void testLoadAToAddrHLThenIncHL() {
+		this.opcode = new LoadAToAddrHLThenIncHL( this.processor );
+		int address = 0xC000;
+		int data = 20;
+		this.processor.getRegisters().setRegister( Register.HL, address);
+		this.processor.getRegisters().setRegister( Register.A, data );
+		
+		this.opcode.execute();
+		
+		Assert.assertEquals(data, this.processor.getMemory().get8BitValue(address));
+		address++;
+		Assert.assertEquals(address, this.processor.getRegisters().getRegister( Register.HL ));
+		
+	}
 }
