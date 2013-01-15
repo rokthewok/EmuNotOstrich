@@ -135,5 +135,21 @@ public class LoadRegToRegTests {
 		this.opcode.execute();
 		
 		Assert.assertEquals( data, this.processor.getRegisters().getRegister( r1 ));
+		
+		Assert.assertEquals( 4, this.opcode.getCycles() );
+	}
+	
+	@Test
+	public void testLoadHLToSp() {
+		this.opcode = new LoadHLToSP( this.processor );
+		
+		int data = 20;
+		this.processor.getRegisters().setRegister( Register.HL, (short) data );
+		
+		this.opcode.execute();
+		
+		Assert.assertEquals( data, this.processor.getRegisters().getRegister( Register.SP ));
+		
+		Assert.assertEquals( 8, this.opcode.getCycles() );
 	}
 }
