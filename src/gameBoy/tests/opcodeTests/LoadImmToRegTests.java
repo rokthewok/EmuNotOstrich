@@ -49,7 +49,6 @@ public class LoadImmToRegTests {
 	
 	@Test
 	public void testLoadImm16ToReg16() {
-		System.out.println("LoadImm16ToReg16");
 		this.opcode = new LoadImm16ToBC( processor );
 		this.loadImm16ToReg16( Register.BC );
 		this.opcode = new LoadImm16ToDE( processor );
