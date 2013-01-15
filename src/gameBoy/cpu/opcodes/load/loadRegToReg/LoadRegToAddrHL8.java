@@ -4,19 +4,19 @@ import gameBoy.cpu.Register;
 import gameBoy.cpu.opcodes.OneByteOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public abstract class LoadRegToAddrHL extends OneByteOpcode {
+public abstract class LoadRegToAddrHL8 extends OneByteOpcode {
 	private static int cycles = 8;
 	private IProcessor processor;
 	private Register from;
 	
-	public LoadRegToAddrHL( IProcessor processor, Register from ) {
+	public LoadRegToAddrHL8( IProcessor processor, Register from ) {
 		this.processor = processor;
 		this.from = from;
 	}
 	
 	public void execute() {
 		this.processor.getMemory().set8BitValue(this.processor.getRegisters().getRegister( Register.HL ), 
-				(byte) this.processor.getRegisters().getRegister( from ));
+				this.processor.getRegisters().getRegister( from ));
 	}
 
 	

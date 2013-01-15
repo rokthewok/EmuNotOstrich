@@ -25,7 +25,6 @@ public class LoadRegToRegTests {
 		
 		int value = 0xFF;
 		int address = 0xA000;
-		System.out.println(address);
 		//Set PC to location of opcode
 		this.processor.getRegisters().setRegister( Register.PC , 0xC000 );
 		//Set parameter of opcode
@@ -170,5 +169,32 @@ public class LoadRegToRegTests {
 		this.opcode.execute();
 		
 		Assert.assertEquals(data, this.processor.getRegisters().getRegister(register));
+	}
+	
+	@Test
+	public void testLoadRegToAddrHL8() {
+		this.opcode = new LoadBToAddrHL8( this.processor );
+		this.loadRegToAddrHL8( Register.B );
+		this.opcode = new LoadCToAddrHL8( this.processor );
+		this.loadRegToAddrHL8( Register.C );
+		this.opcode = new LoadDToAddrHL8( this.processor );
+		this.loadRegToAddrHL8( Register.D );
+		this.opcode = new LoadEToAddrHL8( this.processor );
+		this.loadRegToAddrHL8( Register.E );
+		this.opcode = new LoadHToAddrHL8( this.processor );
+		this.loadRegToAddrHL8( Register.H );
+		this.opcode = new LoadLToAddrHL8( this.processor );
+		this.loadRegToAddrHL8( Register.L );
+	}
+	
+	private void loadRegToAddrHL8( Register register ) {
+		int address = 0xC000;
+		int data = 20;
+		this.processor.getRegisters().setRegister( Register.HL, address);
+		this.processor.getRegisters().setRegister( register, data );
+		
+		this.opcode.execute();
+		
+		Assert.assertEquals(data, this.processor.getMemory().get8BitValue(address));
 	}
 }
