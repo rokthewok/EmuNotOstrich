@@ -1,10 +1,10 @@
 package gameBoy.cpu.opcodes.load.loadRegToReg;
 
 import gameBoy.cpu.Register;
-import gameBoy.interfaces.IOpcode;
+import gameBoy.cpu.opcodes.OneByteOpcode;
 import gameBoy.interfaces.IProcessor;
 
-public abstract class LoadAddrHLToReg8 implements IOpcode {
+public abstract class LoadAddrHLToReg8 extends OneByteOpcode {
 	private static int cycles = 8;
 	private Register to;
 	private IProcessor processor;
@@ -16,7 +16,8 @@ public abstract class LoadAddrHLToReg8 implements IOpcode {
 	
 	public void execute() {
 		this.processor.getRegisters().setRegister(to , 
-				this.processor.getMemory().get8BitValue(this.processor.getRegisters().getRegister( Register.HL )));
+				this.processor.getMemory().get8BitValue(
+						this.processor.getRegisters().getRegister( Register.HL )));
 	}
 
 	public int getCycles() {
