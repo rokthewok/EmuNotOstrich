@@ -18,8 +18,8 @@ public class MemoryTests {
 		IMemory memory = new Memory();
 		assertEquals(  (byte) 0, memory.get8BitValue( eightBitAddr ) );
 		
-		memory.set8BitValue( eightBitAddr, (byte) 100 );
-		assertEquals( (byte) 100, memory.get8BitValue( eightBitAddr ) );
+		memory.set8BitValue( eightBitAddr,  100 );
+		assertEquals(100, memory.get8BitValue( eightBitAddr ) );
 	}
 
 	@Test
@@ -29,8 +29,8 @@ public class MemoryTests {
 		
 		assertEquals( (short) 0, memory.get16BitValue( sixteenBitAddr ) );
 		
-		memory.set16BitValue( sixteenBitAddr, (short) 36812 );
-		assertEquals( 36812, memory.get16BitValue( sixteenBitAddr ) );
+		memory.set16BitValue( sixteenBitAddr, 36812);
+		assertEquals(36812, memory.get16BitValue( sixteenBitAddr ) );
 	}
 	
 	@Test
