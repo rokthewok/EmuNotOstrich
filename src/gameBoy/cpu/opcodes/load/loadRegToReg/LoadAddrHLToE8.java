@@ -3,8 +3,8 @@ package gameBoy.cpu.opcodes.load.loadRegToReg;
 import gameBoy.cpu.Register;
 import gameBoy.interfaces.IProcessor;
 
-public class LoadAddrHLToE8 extends LoadAddrHLToReg8 {
+public class LoadAddrHLToE8 extends LoadAddrReg16ToReg8 {
 	public LoadAddrHLToE8( IProcessor processor ) {
-		super( processor, Register.E );
+		super( processor, Register.E , Register.HL );
 	}
 }

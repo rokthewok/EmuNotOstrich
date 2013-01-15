@@ -145,26 +145,35 @@ public class LoadRegToRegTests {
 	@Test
 	public void testLoadAddrHLToReg8() {
 		this.opcode = new LoadAddrHLToA8( this.processor );
-		this.loadAddrHLToReg8( Register.A );
+		this.loadAddrReg16ToReg8( Register.A, Register.HL);
 		this.opcode = new LoadAddrHLToB8( this.processor );
-		this.loadAddrHLToReg8( Register.B );
+		this.loadAddrReg16ToReg8( Register.B, Register.HL);
 		this.opcode = new LoadAddrHLToC8( this.processor );
-		this.loadAddrHLToReg8( Register.C );
+		this.loadAddrReg16ToReg8( Register.C, Register.HL);
 		this.opcode = new LoadAddrHLToD8( this.processor );
-		this.loadAddrHLToReg8( Register.D );
+		this.loadAddrReg16ToReg8( Register.D, Register.HL);
 		this.opcode = new LoadAddrHLToE8( this.processor );
-		this.loadAddrHLToReg8( Register.E );
+		this.loadAddrReg16ToReg8( Register.E, Register.HL);
 		this.opcode = new LoadAddrHLToH8( this.processor );
-		this.loadAddrHLToReg8( Register.H );
+		this.loadAddrReg16ToReg8( Register.H, Register.HL);
 		this.opcode = new LoadAddrHLToL8( this.processor );
-		this.loadAddrHLToReg8( Register.L );
+		this.loadAddrReg16ToReg8( Register.L, Register.HL);
 	}
 	
-	private void loadAddrHLToReg8( Register register ) {
+	public void testLoadAddrReg16ToA8() {
+		this.opcode = new LoadAddrBCToA8( this.processor );
+		this.loadAddrReg16ToReg8( Register.A, Register.BC );
+		this.opcode = new LoadAddrDEToA8( this.processor );
+		this.loadAddrReg16ToReg8( Register.A, Register.DE );
+		this.opcode = new LoadAddrHLToA8( this.processor );
+		this.loadAddrReg16ToReg8( Register.A, Register.HL );
+	}
+	
+	private void loadAddrReg16ToReg8( Register register , Register addr ) {
 		int address = 0xC000;
 		int data = 20;
 		this.processor.getMemory().set8BitValue(address, data);
-		this.processor.getRegisters().setRegister(Register.HL, address);
+		this.processor.getRegisters().setRegister(addr, address);
 		
 		this.opcode.execute();
 		
