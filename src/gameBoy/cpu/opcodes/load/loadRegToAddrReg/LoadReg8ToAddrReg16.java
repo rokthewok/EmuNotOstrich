@@ -20,7 +20,6 @@ public abstract class LoadReg8ToAddrReg16 extends OneByteOpcode {
 		this.processor.getMemory().set8BitValue(
 				this.processor.getRegisters().getRegister( this.addr ),
 				this.processor.getRegisters().getRegister( this.from ));
-
 	}
 
 	@Override
