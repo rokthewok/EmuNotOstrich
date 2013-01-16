@@ -122,4 +122,27 @@ public class MiscLoadTests {
 		assertEquals( spData, this.processor.getMemory().get16BitValue(immediate));
 		assertEquals(20, this.opcode.getCycles() );
 	}
+	
+	@Test
+	public void testLoadSPPlusSignedImm8IntoHL() {
+		this.opcode = new LoadSPPlusSignedImm8IntoHL( this.processor );
+		int spData = 0xCCCC;
+		int immediate = 0x0A;
+		int pcData = 0xDDDD;
+		this.processor.getRegisters().setRegister(Register.SP, spData);
+		this.processor.getRegisters().setRegister(Register.PC, pcData);
+		this.processor.getMemory().set8BitValue(pcData + 1, immediate);
+		
+		this.opcode.execute();
+		
+		assertEquals(spData + immediate, this.processor.getRegisters().getRegister(Register.HL));
+		
+		immediate = 0xDC;
+		this.processor.getMemory().set8BitValue(pcData + 1, immediate);
+		
+		this.opcode.execute();
+		
+		assertEquals(spData + (byte) immediate, this.processor.getRegisters().getRegister(Register.HL));
+		assertEquals(12, this.opcode.getCycles());
+	}
 }
