@@ -125,6 +125,7 @@ public class MiscLoadTests {
 	
 	@Test
 	public void testLoadSPPlusSignedImm8IntoHL() {
+		//TODO: Needs flag tests
 		this.opcode = new LoadSPPlusSignedImm8IntoHL( this.processor );
 		int spData = 0xCCCC;
 		int immediate = 0x0A;
