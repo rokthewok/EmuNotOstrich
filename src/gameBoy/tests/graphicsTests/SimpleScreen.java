@@ -64,6 +64,7 @@ public class SimpleScreen implements GLEventListener {
 		gl.glEnd();
 		
 		this.gpu.updateWindow();
-		this.renderer.drawWindow( 160, 144, this.gpu.getScrollX(), this.gpu.getScrollY(), this.gpu.getWindowBuffer(), gl );
+		this.renderer.drawWindow( 160, 144, this.gpu.getScrollX(),
+				this.gpu.getScrollY(), this.gpu.getWindowBuffer(), this.gpu.getPalette(), gl );
 	}
 }

@@ -1,10 +1,8 @@
 package gameBoy.tests.graphicsTests;
 
-import gameBoy.cpu.mocks.MockProcessorForGraphics;
 import gameBoy.graphics.GameBoyGpu;
 import gameBoy.graphics.WindowRenderer;
 import gameBoy.interfaces.IMemory;
-import gameBoy.interfaces.IProcessor;
 import gameBoy.memory.mocks.MockMemoryForGraphics;
 
 import java.awt.Frame;
@@ -20,9 +18,9 @@ import javax.media.opengl.awt.GLCanvas;
 public class GraphicsTester {
 	public static void main( String [] args ) {
 		IMemory memory = new MockMemoryForGraphics();
-		IProcessor processor = new MockProcessorForGraphics( memory, null );
+		memory.set8BitValue( 0xFF47, 0x93 );
 		WindowRenderer renderer = new WindowRenderer();
-		GameBoyGpu gpu = new GameBoyGpu( processor );
+		GameBoyGpu gpu = new GameBoyGpu( memory );
 		
 		GLProfile.initSingleton();
 		GLProfile glProfile = GLProfile.getDefault();

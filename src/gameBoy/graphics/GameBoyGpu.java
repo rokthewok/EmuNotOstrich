@@ -1,32 +1,46 @@
 package gameBoy.graphics;
 
-import gameBoy.interfaces.IProcessor;
+import gameBoy.interfaces.IMemory;
+import gameBoy.interfaces.IPalette;
 
 public class GameBoyGpu {
 	private int baseMapAddress;
 	private int baseTileAddress;
 	private int scrollX;
 	private int scrollY;
-	private IProcessor processor;
+	private IMemory memory;
 	private int[][] window;
+	private IPalette palette;
 	
-	public GameBoyGpu( IProcessor processor ) {
-		this.processor = processor;
+	public GameBoyGpu( IMemory memory ) {
+		this.memory = memory;
 		this.window = new int[256][256];
 		
 		this.updateScroll();
 		this.setTileMap( 0x9C00 ); // TODO HACK, remove asap
+		this.updatePalette();
 	}
 	
 	public void updateWindow() {
+		updatePalette();
 		updateScroll();
 		putTiles();
 		putSprites();
 	}
 	
-	public void updateScroll() {
-		this.scrollX = this.processor.getMemory().get8BitValue( 0xFF43 );	// SCX = 0xFF43
-		this.scrollY = this.processor.getMemory().get8BitValue( 0xFF42 );	// SCY = 0xFF42
+	private void updatePalette() {
+		int paletteValue = this.memory.get8BitValue( 0xFF47 );
+		float[] shades = new float[4];
+		shades[paletteValue & 0x3] = 1;
+		shades[( paletteValue & 0xC ) >> 2] = 0.66f;
+		shades[( paletteValue & 0x30 ) >> 4] = 0.33f;
+		shades[( paletteValue & 0xC0 ) >> 6] = 0;
+		this.palette = new Palette( shades );
+	}
+	
+	private void updateScroll() {
+		this.scrollX = this.memory.get8BitValue( 0xFF43 );	// SCX = 0xFF43
+		this.scrollY = this.memory.get8BitValue( 0xFF42 );	// SCY = 0xFF42
 	}
 	
 	public void putSprites() {
@@ -44,14 +58,14 @@ public class GameBoyGpu {
 	private int[] createRawTile( int tileAddress ) {
 		int[] tile = new int[16];
 		for( int i = 0; i < tile.length; i++ ) {
-			tile[i] = this.processor.getMemory().get8BitValue( tileAddress + i );
+			tile[i] = this.memory.get8BitValue( tileAddress + i );
 		}
 		
 		return tile;
 	}
 	
 	private int getTileOffset( int mapAddress ) {
-		return this.processor.getMemory().get8BitValue( mapAddress );
+		return this.memory.get8BitValue( mapAddress );
 	}
 	
 	private void putTile( int offsetX, int offsetY, int[] rawTile ) {
@@ -73,6 +87,10 @@ public class GameBoyGpu {
 		for( int x = offsetX; x < offsetX + 8; x++ ) {
 			this.window[x][y] = ( this.window[x][y] << 1 ) | ( lowByte & ( 1 << 7 - ( x - offsetX ) ) ) >> ( 7 - ( x - offsetX ) );
 		}
+	}
+	
+	public IPalette getPalette() {
+		return this.palette;
 	}
 	
 	public int getScrollX() {
